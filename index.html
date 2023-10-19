@@ -13,6 +13,7 @@
         var locationDataElement = document.getElementById("locationData");
         var distanceElement = document.getElementById("distance");
         var lastPosition = null;
+        var totalDistance = 0; // 移動距離の累積
 
         function displayLocation(position) {
             var latitude = position.coords.latitude;
@@ -30,7 +31,8 @@
                 var currentLng = position.coords.longitude;
 
                 var distance = calculateDistance(lastLat, lastLng, currentLat, currentLng);
-                distanceElement.innerHTML = "移動距離: " + distance.toFixed(2) + " メートル";
+                totalDistance += distance; // 移動距離を累積
+                distanceElement.innerHTML = "移動距離: " + totalDistance.toFixed(2) + " メートル";
             }
 
             lastPosition = position;
